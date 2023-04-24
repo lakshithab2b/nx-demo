@@ -1,0 +1,64 @@
+{
+  "name": "trade-monitor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/trade-monitor/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/trade-monitor",
+        "main": "apps/trade-monitor/src/main.ts",
+        "tsConfig": "apps/trade-monitor/tsconfig.app.json",
+        "assets": ["apps/trade-monitor/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/trade-monitor/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "trade-monitor:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "trade-monitor:build:development"
+        },
+        "production": {
+          "buildTarget": "trade-monitor:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/trade-monitor/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/trade-monitor/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

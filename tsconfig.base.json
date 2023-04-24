@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@datahouse/promethues": ["libs/promethues/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
